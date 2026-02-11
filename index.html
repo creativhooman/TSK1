@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komyu Quest Invite 🌿</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-main:#dff5e1;
+  --scroll:#f8f1dc;
+  --green:#3e7c4f;
+  --brown:#8b5e3c;
+  --highlight:#ffcc00;
+}
+
+body{
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  font-family:'Courier Prime',monospace;
+  background:var(--bg-main);
+  overflow:hidden;
+  transition:background 0.6s ease;
+}
+
+/* BACKGROUND ICONS */
+#decor-layer{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+.decor{
+  position:absolute;
+  opacity:0.2;
+  animation:float 25s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0px) rotate(0deg);}
+  50%{transform:translateY(-60px) rotate(180deg);}
+  100%{transform:translateY(0px) rotate(360deg);}
+}
+
+/* SCREENS */
+.screen{
+  position:relative;
+  z-index:2;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  width:100%;
+  min-height:100vh;
+  justify-content:center;
+}
+
+h2{
+  font-family:'Press Start 2P';
+  font-size:0.75rem;
+  line-height:1.6;
+  color:var(--brown);
+  padding: 0 10px;
+}
+
+.scroll{
+  background:var(--scroll);
+  width:95vw;
+  max-width:520px;
+  padding:25px 20px;
+  border-radius:8px;
+  border:3px solid #d7c4a3;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.invite-text{
+  font-size:0.82rem;
+  line-height:1.6;
+  color:#222;
+}
+
+.big-img{
+  width:260px;
+  border-radius:15px;
+  margin-bottom:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.small-gif{
+  width:140px;
+  margin-top:20px;
+  border-radius:12px;
+}
+
+/* BUTTONS */
+.button-row{
+  display:flex;
+  justify-content:space-between;
+  width:95vw;
+  max-width:520px;
+  margin-top:15px;
+}
+
+.option-btn{
+  padding:12px 14px;
+  font-family:'Press Start 2P';
+  font-size:0.55rem;
+  border:none;
+  cursor:pointer;
+  border-radius:18px;
+  animation:floatBtn 3s ease-in-out infinite;
+}
+
+@keyframes floatBtn{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+
+#yesBtn{
+  background:var(--green);
+  color:white;
+}
+
+#noBtn{
+  background:#c97a4c;
+  color:white;
+}
+
+/* HIGHLIGHTED SIGN UP */
+.sign-up-highlight {
+  background: var(--highlight) !important;
+  color: #000 !important;
+  font-size: 0.7rem !important;
+  padding: 15px 20px !important;
+  border: 3px solid var(--brown) !important;
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Press Start 2P';
+  border-radius: 15px;
+  animation: pulse 1.5s infinite !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  margin-top: 10px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* SOCIAL PODS */
+.social-note{
+  margin-top:20px;
+  font-size:0.7rem;
+  color:#333;
+}
+
+.social-pod{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+  justify-content:center;
+}
+
+.pod{
+  padding: 10px 15px;
+  border-radius:20px;
+  background:var(--green);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:0.6rem;
+  font-family: 'Press Start 2P';
+  color:white;
+  text-decoration:none;
+}
+
+.back-btn{
+  margin-top:25px;
+  font-family:'Press Start 2P';
+  font-size:0.5rem;
+  padding:10px 15px;
+  border:none;
+  background:#666;
+  color:white;
+  border-radius:15px;
+  cursor:pointer;
+  opacity: 0.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="decor-layer"></div>
+
+<div id="intro" class="screen" style="display:flex;">
+  <h2>KOMYU QUEST UNLOCKED</h2>
+  <p style="font-size:0.8rem;">Tap the letter</p>
+  <div style="font-size:70px; cursor:pointer;" onclick="openDoor()">✉️</div>
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyeG03eHQ3YXV5bHI2MGdyOG1tMXVqMWVyOXhmaTkxdHBkY3BhbjJoZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QWkuGmMgphvmE/giphy.gif" class="small-gif">
+</div>
+
+<div id="door" class="screen">
+  <h2>Knock knock! ✊<br>Ready ka na ba?</h2>
+  <div style="font-size:60px; cursor:pointer; margin: 20px 0;" onclick="openLetter()">🚪</div>
+  <p style="font-size:0.8rem; line-height: 1.5;">Bubuksan na natin ang pinto <br>patungong Sitio Kalangitan. 🏡</p>
+</div>
+
+<div id="letter" class="screen">
+  <div class="scroll">
+    <img src="IMG_7180.jpeg" class="big-img">
+    <div class="invite-text">
+      <strong>Hi Ka-KOMYU! Kamusta? 💌</strong><br><br>
+      Sa Liwanag at Dunong, we believe that learning becomes brighter when shared. Small acts of teaching, listening, and presence can light up a whole community.<br><br>
+      Free ka ba sa Sunday? If may extra time and konting puso ka to share, we’d love to have you. 💚<br><br>
+      If willing kang maglingkod at makisama sa community, you can sign up as a volunteer. Super dali lang so much.<br><br>
+      Let’s turn this ordinary Sunday into something extraordinary. Samahan mo kami this Sunday? 👋🙂
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button id="yesBtn" class="option-btn">ACCEPT</button>
+    <button id="noBtn" class="option-btn">Maybe next time?</button>
+  </div>
+</div>
+
+<div id="yes" class="screen">
+  <img src="IMG_7182.jpeg" class="big-img">
+  <h2>Super excited kami,<br>see you soon! ✨</h2>
+
+  <a href="https://forms.gle/kRLkhZ7CeahB9M8c8" target="_blank" class="sign-up-highlight">
+    👉 CLICK HERE TO SIGN UP! 📝
+  </a>
+
+  <div class="social-note" style="margin-top: 30px;">Follow us for more updates:</div>
+  <div class="social-pod">
+    <a href="https://www.facebook.com/share/17snyGpB7J/?mibextid=wwXIfr" target="_blank" class="pod">Facebook</a>
+    <a href="https://www.instagram.com/liwanagatdunong" target="_blank" class="pod">Instagram</a>
+  </div>
+
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNXA2Mm1kZ2p5OGZhdXhuOG1kaW95ZTdtcDZvaG04cTl1c2pnZ293eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HHzBaXsra2MHciRNQr/giphy.gif" class="small-gif">
+  <button onclick="restart()" class="back-btn">Back to Start</button>
+</div>
+
+<div id="no" class="screen">
+  <img src="IMG_7181.jpeg" class="big-img">
+  <h2>No pressure, bestie!<br>See you soon sa Komyu! 🙂</h2>
+
+  <div class="social-note">Follow us for more updates:</div>
+  <div class="social-pod">
+    <a href="https://www.facebook.com/share/17snyGpB7J/?mibextid=wwXIfr" target="_blank" class="pod">Facebook</a>
+    <a href="https://www.instagram.com/liwanagatdunong" target="_blank" class="pod">Instagram</a>
+  </div>
+
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHp4NmRwem81enhrZnR0b2l2b3c5b3Rjem9meWZldjh1YWpsenVkeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3MZIDYT3rTv7PBVlQv/giphy.gif" class="small-gif">
+  <button onclick="restart()" class="back-btn">Back to Start</button>
+</div>
+
+<script>
+/* floating farm/nature icons */
+const icons=['🌽','🌾','🍅','🌱','🌿','🍃','🌱','🌿','🍃','🍃','🍃'];
+const layer=document.getElementById('decor-layer');
+
+for(let i=0;i<60;i++){
+  const span=document.createElement('span');
+  span.className='decor';
+  span.innerText=icons[Math.floor(Math.random()*icons.length)];
+  span.style.left=Math.random()*100+'vw';
+  span.style.top=Math.random()*100+'vh';
+  span.style.fontSize=(Math.random()*18+14)+'px';
+  span.style.animationDelay=(Math.random()*-25)+'s';
+  layer.appendChild(span);
+}
+
+function hideAll(){
+  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+}
+
+function openDoor(){
+  hideAll();
+  document.getElementById('door').style.display='flex';
+}
+
+function openLetter(){
+  hideAll();
+  document.getElementById('letter').style.display='flex';
+}
+
+function restart(){
+  location.reload();
+}
+
+/* YES */
+document.getElementById('yesBtn').onclick=function(){
+  hideAll();
+  document.getElementById('yes').style.display='flex';
+};
+
+/* PLAYFUL MAYBE */
+const noTexts=[
+"Maybe next time?",
+"Sure na?",
+"May chance ka..",
+"Final answer?",
+"Okie dokie!"
+];
+
+let index=0;
+
+document.getElementById('noBtn').onclick=function(){
+  if(index < noTexts.length-1){
+    index++;
+    this.innerText=noTexts[index];
+  }else{
+    hideAll();
+    document.getElementById('no').style.display='flex';
+  }
+};
+</script>
+
+</body>
+</html>
