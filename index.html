@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Quest 🌾</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Courier+Prime&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --green:#3e7c4f;
+  --brown:#8b5e3c;
+  --earth:#f2e3c6;
+}
+
+body{
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Courier Prime',monospace;
+  overflow:hidden;
+  background:linear-gradient(#87c8f2,#5aa9d6);
+  transition:background 1s ease;
+}
+
+/* SCREENS */
+.screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  width:100%;
+  z-index:2;
+}
+
+h2{
+  font-family:'Press Start 2P';
+  font-size:0.75rem;
+  line-height:1.6;
+  color:var(--brown);
+}
+
+/* GIF */
+.gif{
+  width:180px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+/* HEARTS */
+.hearts{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+/* SCROLL */
+.scroll{
+  background:#f8f1dc;
+  width:92vw;
+  max-width:480px;
+  padding:25px;
+  border-radius:10px;
+  border:3px solid #d7c4a3;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  position:relative;
+  z-index:3;
+}
+
+.invite-text{
+  font-size:0.85rem;
+  line-height:1.6;
+  color:#222;
+}
+
+/* BUTTONS */
+button{
+  font-family:'Press Start 2P';
+  font-size:0.6rem;
+  padding:12px 15px;
+  margin-top:15px;
+  border:none;
+  cursor:pointer;
+}
+
+#yesBtn{background:var(--green);color:white;}
+#noBtn{background:#c97a4c;color:white;}
+
+/* RICE FIELD */
+.field{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:35%;
+  background:linear-gradient(#7ec850,#4caf50);
+  z-index:1;
+}
+
+/* CARABAO WALK */
+.carabao{
+  position:absolute;
+  bottom:25%;
+  font-size:40px;
+  animation:walk 25s linear infinite;
+}
+
+@keyframes walk{
+  0%{left:-10%;}
+  100%{left:110%;}
+}
+
+/* BIRDS */
+.bird{
+  position:absolute;
+  top:15%;
+  font-size:25px;
+  animation:fly 18s linear infinite;
+}
+
+@keyframes fly{
+  0%{left:-10%;}
+  100%{left:110%;}
+}
+
+/* RIVER */
+.river{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:18%;
+  background:linear-gradient(
+    90deg,
+    #4fc3f7 0%,
+    #81d4fa 25%,
+    #4fc3f7 50%,
+    #81d4fa 75%,
+    #4fc3f7 100%
+  );
+  background-size:200% 100%;
+  animation:flow 6s linear infinite;
+  z-index:2;
+}
+
+@keyframes flow{
+  0%{background-position:0% 0;}
+  100%{background-position:200% 0;}
+}
+
+/* FALLING LEAVES */
+.leaf{
+  position:absolute;
+  top:-10%;
+  font-size:20px;
+  animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgSound" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b8c2e.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO -->
+<div id="intro" class="screen" style="display:flex;">
+  <img class="gif" src="https://media.giphy.com/media/PgdWZV8Bb1fFqVcmtk/giphy.gif">
+  <h2>Tap the letter to open your mission 💌</h2>
+  <div style="font-size:70px; cursor:pointer;" onclick="openDoor()">✉️</div>
+</div>
+
+<!-- DOOR -->
+<div id="door" class="screen">
+  <div class="river"></div>
+  <h2>Knock knock 🌾 Tap the door</h2>
+  <div style="font-size:60px; cursor:pointer;" onclick="openLetter()">🚪</div>
+</div>
+
+<!-- LETTER -->
+<div id="letter" class="screen">
+  <div class="hearts" id="hearts">❤️❤️❤️❤️❤️</div>
+
+  <div class="field"></div>
+  <div class="carabao">🐃</div>
+  <div class="bird">🐦</div>
+  <div class="bird" style="animation-delay:7s;">🕊️</div>
+
+  <div class="scroll">
+    <div class="invite-text">
+      <strong>Hi bestie! Kamusta? 💌</strong><br><br>
+
+      Sa Liwanag at Dunong, we believe that learning becomes brighter when shared. Small acts of teaching, listening, and presence can light up a whole community.<br><br>
+
+      Free ka ba sa Sunday? If may extra time and konting puso ka to share, we’d love to have you. 💚<br><br>
+
+      If willing kang maglingkod at makisama sa community, you can sign up as a volunteer. Super dali lang so much.<br><br>
+
+      Mas masaya kapag sama-sama. Let’s turn this ordinary Sunday into something extraordinary. Samahan mo kami this Sunday? 👋🙂
+    </div>
+  </div>
+
+  <button id="yesBtn">ACCEPT QUEST</button>
+  <button id="noBtn">Maybe next time?</button>
+</div>
+
+<!-- YES -->
+<div id="yes" class="screen">
+  <img class="gif" src="https://media.giphy.com/media/12PIT4DOj6Tgek/giphy.gif">
+  <h2>Mission Accepted 🌿</h2>
+  <a href="https://forms.gle/kRLkhZ7CeahB9M8c8" target="_blank">
+    <button id="yesBtn">SIGN UP HERE</button>
+  </a>
+  <button onclick="restart()">Start Over</button>
+</div>
+
+<!-- NO -->
+<div id="no" class="screen">
+  <div class="leaf">🍃</div>
+  <div class="leaf" style="left:40%;animation-delay:2s;">🍂</div>
+  <div class="leaf" style="left:70%;animation-delay:4s;">🍃</div>
+
+  <h2>Maybe next mission 🌾</h2>
+  <p style="font-size:0.8rem;">Follow muna for future schedules:</p>
+
+  <a href="https://www.facebook.com/share/17snyGpB7J/?mibextid=wwXIfr" target="_blank">
+    <button>Facebook</button>
+  </a>
+
+  <a href="https://www.instagram.com/liwanagatdunong?igsh=MTc3bjY3Z2psYXRveQ==" target="_blank">
+    <button>Instagram</button>
+  </a>
+
+  <button onclick="restart()">Back to Start</button>
+</div>
+
+<script>
+
+const bgSound=document.getElementById("bgSound");
+document.body.addEventListener("click",()=>{bgSound.volume=0.2;bgSound.play();},{once:true});
+
+function hideAll(){
+  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+}
+
+function openDoor(){
+  hideAll();
+  document.getElementById('door').style.display='flex';
+}
+
+function openLetter(){
+  hideAll();
+  document.body.style.background='#f2e3c6';
+  document.getElementById('letter').style.display='flex';
+}
+
+function restart(){
+  location.reload();
+}
+
+document.getElementById('yesBtn').onclick=function(){
+  hideAll();
+  document.getElementById('yes').style.display='flex';
+}
+
+/* MAKULIT BUTTON + HEART SYSTEM */
+const noBtn=document.getElementById('noBtn');
+const heartsDisplay=document.getElementById('hearts');
+
+let count=0;
+let lives=5;
+
+const texts=[
+  "Maybe next time?",
+  "Sure na?",
+  "May chance ka..",
+  "Final answer?",
+  "Okie dokie!"
+];
+
+noBtn.onclick=function(){
+  if(lives>1){
+    lives--;
+    heartsDisplay.innerText="❤️".repeat(lives);
+    count=(count+1)%texts.length;
+    noBtn.innerText=texts[count];
+  }else{
+    hideAll();
+    document.getElementById('no').style.display='flex';
+  }
+};
+
+</script>
+
+</body>
+</html>
