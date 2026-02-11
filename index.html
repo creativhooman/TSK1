@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komyu Invitation</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #dff5e1;
+  overflow: hidden;
+  transition: background 0.6s ease;
+}
+
+.section {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  padding: 20px;
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img.main-photo {
+  width: 75%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.letter {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+.accept-btn {
+  background: #3ca34d;
+  color: white;
+}
+
+.maybe-btn {
+  background: #f4b400;
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.small-gif {
+  width: 120px;
+  margin-top: 15px;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0.6;
+  animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(-25px);}
+  100% {transform: translateY(0);}
+}
+
+.social-container {
+  margin-top: 20px;
+}
+
+.social-note {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.social-icon {
+  font-size: 30px;
+  margin: 10px;
+  text-decoration: none;
+  animation: float 6s infinite ease-in-out;
+}
+
+.back-btn {
+  margin-top: 15px;
+  background: #6c757d;
+  color: white;
+}
+
+.start-btn {
+  background: #3ca34d;
+  color: white;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="bg-music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Click Sound -->
+<audio id="clickSound">
+  <source src="click.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FLOATING NATURE -->
+<div class="floating-icon" style="top:5%; left:5%;">🌾</div>
+<div class="floating-icon" style="top:10%; right:8%;">🌽</div>
+<div class="floating-icon" style="bottom:15%; left:10%;">🍃</div>
+<div class="floating-icon" style="bottom:10%; right:5%;">🍂</div>
+<div class="floating-icon" style="top:30%; left:2%;">🍎</div>
+<div class="floating-icon" style="top:40%; right:3%;">🥬</div>
+<div class="floating-icon" style="bottom:30%; right:15%;">🍃</div>
+
+<!-- INTRO -->
+<div id="intro" class="section active">
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyeG03eHQ3YXV5bHI2MGdyOG1tMXVqMWVyOXhmaTkxdHBkY3BhbjJoZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QWkuGmMgphvmE/giphy.gif" width="200">
+  <button class="start-btn" onclick="openDoor()">Tap to open the door</button>
+</div>
+
+<!-- DOOR -->
+<div id="door" class="section">
+  <h2>🚪 Open the door?</h2>
+  <button class="start-btn" onclick="openLetter()">Open</button>
+</div>
+
+<!-- LETTER -->
+<div id="letterSection" class="section">
+  <img src="IMG_7180.jpg" class="main-photo">
+  <div class="letter">
+    <p><strong>Hi bestie! Kamusta? 💌</strong></p>
+    <p>Sa Liwanag at Dunong, we believe that learning becomes brighter when shared. Small acts of teaching, listening, and presence can light up a whole community.</p>
+    <p>Free ka ba sa Sunday? If may extra time and konting puso ka to share, we’d love to have you. 💚</p>
+    <p>If willing kang maglingkod at makisama sa community, you can sign up as a volunteer. Super dali lang so much.</p>
+    <p>Mas masaya kapag sama-sama. Let’s turn this ordinary Sunday into something extraordinary. Samahan mo kami this Sunday? 👋🙂</p>
+    
+    <button class="accept-btn" onclick="accepted()">Accept Request</button>
+    <button class="maybe-btn" onclick="maybeNext()">Maybe Next Time</button>
+  </div>
+</div>
+
+<!-- YES -->
+<div id="yesSection" class="section">
+  <img src="IMG_7182.jpg" class="main-photo">
+  <h2>Our hearts are full! 💚</h2>
+  <p>Let's light up the community!</p>
+  <img class="small-gif" src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyNXA2Mm1kZ2p5OGZhdXhuOG1kaW95ZTdtcDZvaG04cTl1c2pnZ293eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HHzBaXsra2MHciRNQr/giphy.gif">
+  
+  <div class="social-container">
+    <div class="social-note">Follow us for more updates:</div>
+    <a href="#" class="social-icon">📘</a>
+    <a href="#" class="social-icon">📸</a>
+  </div>
+
+  <button class="back-btn" onclick="restart()">Back to Start</button>
+</div>
+
+<!-- NO -->
+<div id="noSection" class="section">
+  <img src="IMG_7181.jpg" class="main-photo">
+  <h2>No pressure, bestie! 🏠</h2>
+  <p>Our doors at the Komyu are always open!</p>
+  <img class="small-gif" src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHp4NmRwem81enhrZnR0b2l2b3c5b3Rjem9meWZldjh1YWpsenVkeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3MZIDYT3rTv7PBVlQv/giphy.gif">
+  
+  <div class="social-container">
+    <div class="social-note">Follow us for more updates:</div>
+    <a href="#" class="social-icon">📘</a>
+    <a href="#" class="social-icon">📸</a>
+  </div>
+
+  <button class="back-btn" onclick="restart()">Back to Start</button>
+</div>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const clickSound = document.getElementById("clickSound");
+
+function playClick() {
+  clickSound.play();
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function openDoor() {
+  playClick();
+  bgMusic.play();
+  showSection("door");
+}
+
+function openLetter() {
+  playClick();
+  showSection("letterSection");
+}
+
+function accepted() {
+  playClick();
+  showSection("yesSection");
+}
+
+function maybeNext() {
+  playClick();
+  document.body.style.background = "#f8e8c8";
+  showSection("noSection");
+}
+
+function restart() {
+  playClick();
+  document.body.style.background = "#dff5e1";
+  showSection("intro");
+}
+</script>
+
+</body>
+</html>
